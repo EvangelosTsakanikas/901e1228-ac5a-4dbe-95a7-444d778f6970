@@ -1,0 +1,104 @@
+<div class="scroll-container">
+
+    <div class="grid-container">
+
+        @for(photo of photos(); track photo.uuid) {
+
+        <div class="photo-container">
+
+            <mat-card class="card" (click)="toggleFavorite(photo.id)">
+                <mat-card-content>
+                    <img [ngSrc]="photo.src" [alt]="photo.src" [width]="width" [height]="height" priority />
+                </mat-card-content>
+                <mat-card-actions class="">
+                    <span class="spacer"></span>
+
+                    <button mat-icon-button aria-label="Example icon button with a heart icon"
+                        [ngClass]="photo.isFavorite ? 'favorite' : 'not-favorite'">
+                        <mat-icon>favorite</mat-icon>
+                    </button>
+                    <span class="spacer"></span>
+                </mat-card-actions>
+            </mat-card>
+
+
+        </div>
+
+        }
+
+    </div>
+
+
+    @if (loading()) {
+
+    <div class="spinner">
+        <mat-spinner></mat-spinner>
+    </div>
+
+    }
+
+</div>
+
+
+
+
+
+
+
+
+<!-- @if (loading()) {
+
+<div>Loading...</div>
+
+} @else {
+
+<div class="viewport">
+    @for(photo of photos(); track photo.id) {
+
+    <div (click)="toggleFavorite(photo.id)" class="photo" [ngClass]="photo.isFavorite ? 'favorite' : ''">
+        <img [ngSrc]="photo.src" [alt]="photo.src" [width]="width" [height]="height" priority />
+
+    </div>
+
+    }
+
+</div>
+}
+
+@if (!loading()) {
+<div class="spinner">
+    <mat-spinner></mat-spinner>
+</div>
+} -->
+
+
+
+
+<!-- @if (loading()) {
+<div>Loading...</div>
+} @else {
+<div class="photos-container">
+    @for(photo of photos(); track photo.id) {
+    <div (click)="toggleFavorite(photo.id)" class="photo" [ngClass]="photo.isFavorite ? 'favorite' : ''">
+
+        <mat-card class="example-card test" appearance="outlined">
+            <mat-card-content>
+                <img [ngSrc]="photo.src" [alt]="photo.src" [width]="width" [height]="height" priority />
+            </mat-card-content>
+            <mat-card-actions class="">
+                <span class="spacer"></span>
+                <button mat-mini-fab aria-label="Example icon button with a heart icon" class="test">
+                    <mat-icon>favorite</mat-icon>
+                </button>
+                <span class="spacer"></span>
+            </mat-card-actions>
+        </mat-card>
+
+    </div>
+    }
+</div>
+}
+
+@if (!loading()) {
+<div>Loading more images......</div>
+} -->

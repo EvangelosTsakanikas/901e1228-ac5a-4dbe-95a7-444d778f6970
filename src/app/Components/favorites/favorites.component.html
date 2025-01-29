@@ -1,0 +1,38 @@
+@if (loading()) {
+
+<div class="spinner">
+    <mat-spinner></mat-spinner>
+</div>
+
+}
+@else {
+<div class="grid-container">
+    <mat-grid-list cols="6" gutterSize="1ch">
+
+        @for(favorite of favorites(); track favorite.uuid) {
+
+        <mat-grid-tile class="grid-tile">
+            <div [routerLink]="['/photos', favorite.id]" ariaCurrentWhenActive="page" class="photo-container">
+
+                <img [ngSrc]="favorite.src" [alt]="favorite.src" [width]="width" [height]="height" priority
+                     />
+
+                <div class="overlay">
+                    <i class="fullscreen-icon">⛶</i> 
+                </div>
+            </div>
+        </mat-grid-tile>
+
+        }
+    </mat-grid-list>
+</div>
+}
+
+
+
+<!-- <div class="image-container">
+    <img src="https://via.placeholder.com/600x400" alt="Sample Image" />
+    <div class="overlay">
+        <i class="fullscreen-icon">⛶</i>
+    </div>
+</div> -->

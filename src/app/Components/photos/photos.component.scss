@@ -1,0 +1,46 @@
+@use '@angular/material' as mat;
+
+.scroll-container {
+  height: 90vh;
+  overflow-y: auto;
+  box-sizing: border-box;
+  scroll-behavior: smooth;
+  // background-color: lightgray;
+}
+
+.grid-container {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr [col-start]);
+  grid-auto-rows: auto;
+
+  gap: 1ch;
+  padding: 1ch;
+}
+
+.photo-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.card:hover {
+  cursor: pointer;
+}
+
+.favorite {
+  color: pink
+}
+
+.not-favorite {
+  color: rgba(255, 192, 203, 0.25)
+}
+
+.spinner {
+  display: flex;
+  justify-content: center;
+  padding: 1rem;
+}
+
+.spacer {
+  flex: 1 1 auto;
+}

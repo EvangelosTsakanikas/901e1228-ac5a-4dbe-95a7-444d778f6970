@@ -1,0 +1,14 @@
+.spacer {
+    flex: 1 1 auto;
+}
+
+.active {
+    background: #bddbfa linear-gradient(to bottom, #bddbfa 5%, #80b5ea 100%);
+}
+
+.shadow {
+    // border-bottom: 1px solid var(--mat-sys-secondary);
+    // box-shadow: 0px 1px 5px var(--mat-sys-secondary);
+    border-bottom: 1px solid lightgray;
+    box-shadow: 0px 1px 5px var(--mat-sys-secondary);
+}
