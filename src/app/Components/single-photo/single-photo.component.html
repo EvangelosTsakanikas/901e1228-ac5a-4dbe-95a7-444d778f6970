@@ -6,7 +6,7 @@
 <div class="container">
     <div class="full-screen-photo">
 
-        <img [src]="photo.src" [alt]="photo.src" width="100%" height="100%" (load)="onImageLoad()" />
+        <img [src]="photo.src" [alt]="photo.src" width="100%" height="100%" (load)="onImageLoad()" [@fadeIn]="isVisible ? 'visible' : 'hidden'"/>
     </div>
     <div>
         <button mat-stroked-button routerLink="/favorites" (click)="deleteFromFavorites()">

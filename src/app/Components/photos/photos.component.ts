@@ -1,5 +1,4 @@
 import { ChangeDetectionStrategy, Component, signal } from '@angular/core';
-import { NgOptimizedImage } from '@angular/common';
 import { PhotosService } from '../../Services/photos.service';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { FavoritesService } from '../../Services/favorites.service';
@@ -15,7 +14,7 @@ import { environment } from '../../Environments/environment';
 
 @Component({
   selector: 'app-photos',
-  imports: [NgOptimizedImage, MatProgressSpinnerModule, MatCardModule, MatButtonModule, MatIconModule, NgClass],
+  imports: [MatProgressSpinnerModule, MatCardModule, MatButtonModule, MatIconModule, NgClass],
   templateUrl: './photos.component.html',
   styleUrl: './photos.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush
@@ -25,9 +24,10 @@ export class PhotosComponent {
   width: number = environment.photoWidth
   height: number = environment.photoHeight
 
-  private page = 0
-  private photosPerPage = 6;
-  private threshold = 50
+  private page: number = 0
+  private photosPerPage: number = 6;
+  private threshold: number = 50
+  private buffer: number = 6
 
   loading = signal<boolean>(true);
   photos = signal<Photo[]>([])
@@ -41,7 +41,11 @@ export class PhotosComponent {
 
     this.photosSubscription = this.photosService.getPhotos().subscribe({
       next: (photos) => {
-        this.photos.set(photos);
+        this.photos.update(_ => {
+          const startIndex = Math.max(0, this.page * this.photosPerPage - this.buffer)
+          const endIndex = Math.min(photos.length, this.page * this.photosPerPage + this.buffer)
+          return photos.slice(startIndex, endIndex)
+        })
         this.loading.set(false)
       },
       error: (err) => {
@@ -95,4 +99,5 @@ export class PhotosComponent {
       }
     }
   }
+
 }

@@ -1,18 +1,14 @@
-@use '@angular/material' as mat;
-
 .scroll-container {
   height: 90vh;
   overflow-y: auto;
   box-sizing: border-box;
   scroll-behavior: smooth;
-  // background-color: lightgray;
 }
 
 .grid-container {
   display: grid;
   grid-template-columns: repeat(3, 1fr [col-start]);
   grid-auto-rows: auto;
-
   gap: 1ch;
   padding: 1ch;
 }
@@ -23,16 +19,21 @@
   justify-content: center;
 }
 
+.card:active {
+  box-shadow: 0 2px lightgray;
+  transform: translateY(2px);
+}
+
 .card:hover {
   cursor: pointer;
 }
 
 .favorite {
-  color: pink
+  color: rgb(255, 151, 169)
 }
 
 .not-favorite {
-  color: rgba(255, 192, 203, 0.25)
+  color: rgba(255, 192, 203, 0.35)
 }
 
 .spinner {
@@ -41,6 +42,11 @@
   padding: 1rem;
 }
 
-.spacer {
-  flex: 1 1 auto;
+.centering {
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.expand {
+  height: 15vh;
 }

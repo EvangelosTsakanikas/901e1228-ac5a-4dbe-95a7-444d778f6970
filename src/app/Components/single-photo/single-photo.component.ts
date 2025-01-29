@@ -7,13 +7,31 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { environment } from '../../Environments/environment';
+import { animate, state, style, transition, trigger } from '@angular/animations';
 
 @Component({
   selector: 'app-single-photo',
   imports: [MatIconModule, MatButtonModule, RouterLink, MatProgressSpinnerModule],
   templateUrl: './single-photo.component.html',
   styleUrl: './single-photo.component.scss',
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  animations: [
+    trigger('fadeIn', [
+      state('hidden', style({
+        opacity: 0
+      })),
+      state('visible', style({
+        opacity: 1
+      })),
+      transition('hidden => visible', [
+        animate('500ms ease-out')
+      ]),
+      transition('visible => hidden', [
+        animate('500ms ease-in')
+      ])
+    ])
+  ]
+
 })
 export class SinglePhotoComponent {
 
@@ -24,6 +42,7 @@ export class SinglePhotoComponent {
 
   photo!: Photo
   photoId!: string
+  isVisible = false
 
   constructor(private route: ActivatedRoute, private photosService: PhotosService, private favoritesService: FavoritesService) { }
 
@@ -32,6 +51,10 @@ export class SinglePhotoComponent {
 
     const favorites = this.favoritesService.getFavorites()
     this.photo = this.photosService.loadStoredPhotos(favorites, true).find(photo => photo.id == this.photoId) ?? {} as Photo
+
+    setTimeout(() => {
+      this.isVisible = true
+    }, this.minDelay)
   }
 
   onImageLoad() {

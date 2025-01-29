@@ -12,40 +12,34 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { By } from '@angular/platform-browser';
 import { DebugElement } from '@angular/core';
+import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 
 describe('SinglePhotoComponent', () => {
   let component: SinglePhotoComponent;
   let fixture: ComponentFixture<SinglePhotoComponent>;
 
-  // addition //
   let photosService: jasmine.SpyObj<PhotosService>;
   let favoritesService: jasmine.SpyObj<FavoritesService>;
-  // -------- //
 
   beforeEach(async () => {
 
-    // addition //
     const photosServiceMock = jasmine.createSpyObj('PhotosService', ['loadStoredPhotos']);
     const favoritesServiceMock = jasmine.createSpyObj('FavoritesService', ['getFavorites', 'removeFavorite']);
-    // -------- //
 
     await TestBed.configureTestingModule({
       imports: [
         SinglePhotoComponent,
-        // addition //
         MatIconModule,
         MatButtonModule,
         MatProgressSpinnerModule,
-        // -------- //
       ],
       providers: [
         provideRouter([]),
         provideHttpClient(),
         provideHttpClientTesting(),
-        // addition //
+        provideAnimationsAsync(),
         { provide: PhotosService, useValue: photosServiceMock },
         { provide: FavoritesService, useValue: favoritesServiceMock },
-        // -------- //
       ]
     })
       .compileComponents();
@@ -62,8 +56,6 @@ describe('SinglePhotoComponent', () => {
       uuid: '',
       isFavorite: false
     }]);
-    // -------- //
-
 
     fixture.detectChanges();
   });

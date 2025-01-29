@@ -1,6 +1,5 @@
 import { ChangeDetectionStrategy, Component, signal } from '@angular/core';
 import { FavoritesService } from '../../Services/favorites.service';
-import { NgOptimizedImage } from '@angular/common';
 import { PhotosService } from '../../Services/photos.service';
 import { RouterLink } from '@angular/router';
 import { Photo } from '../../Models/photo';
@@ -10,7 +9,7 @@ import { environment } from '../../Environments/environment';
 
 @Component({
   selector: 'app-favorites',
-  imports: [NgOptimizedImage, RouterLink, MatGridListModule, MatProgressSpinnerModule],
+  imports: [RouterLink, MatGridListModule, MatProgressSpinnerModule],
   templateUrl: './favorites.component.html',
   styleUrl: './favorites.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush

@@ -9,19 +9,21 @@
 <div class="grid-container">
     <mat-grid-list cols="6" gutterSize="1ch">
 
-        @for(favorite of favorites(); track favorite.uuid) {
+        @for(favorite of favorites(); track favorite.uuid; let idx = $index) {
 
         <mat-grid-tile class="grid-tile">
             <div [routerLink]="['/photos', favorite.id]" ariaCurrentWhenActive="page" class="photo-container">
 
-                <img [ngSrc]="favorite.src" [alt]="favorite.src" [width]="width" [height]="height" priority
-                     />
+                <img [src]="favorite.src" [alt]="favorite.src" [width]="width" [height]="height"
+                    />
 
                 <div class="overlay">
-                    <i class="fullscreen-icon">⛶</i> 
+                    <i class="fullscreen-icon">⛶</i>
                 </div>
+
             </div>
         </mat-grid-tile>
+
 
         }
     </mat-grid-list>
